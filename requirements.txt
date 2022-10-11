@@ -1,5 +1,4 @@
 pandas == 1.4.4
-pickle == 4.0
 streamlit == 1.13.0
 shap == 0.41.0
 
