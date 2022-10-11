@@ -108,10 +108,14 @@ if btn_predict:
     else: 
         st.success('The customer default probability is {}'.format(pred))
         
-#SHAP graphique      
+#SHAP graphique 1      
     st.subheader('Result Interpretability - Applicant Level')
     shap.initjs()
     explainer = shap.Explainer(pipeline["classifier"])
     shap_values = explainer(D_user_data)
-    fig  = shap.plots._waterfall.waterfall_legacy(explainer.expected_value[0],shap_values[0].values[:,0], feature_names = D_user_data.columns, max_display = 20 )
+    fig  = shap.plots._waterfall.waterfall_legacy(explainer.expected_value[0],shap_values[0].values[:,0], feature_names = D_user_data.columns, max_display = 20)
     st.pyplot(fig)
+    
+#SHAP graphique 2
+    st.subheader('Model Interpretability - Overall')
+    st.image("Graph2.png") 
