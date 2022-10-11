@@ -5,11 +5,9 @@ Created on Fri Oct  7 10:41:17 2022
 @author: Yoann
 """
 
-import numpy as np
 import pandas as pd
 import pickle
 import streamlit as st 
-from sklearn.model_selection import train_test_split 
 import shap
 
 #Load the saved model
