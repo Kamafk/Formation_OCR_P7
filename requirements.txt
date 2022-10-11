@@ -2,3 +2,4 @@ pandas == 1.4.4
 streamlit == 1.13.0
 shap == 0.41.0
 matplotlib == 3.5.2
+ipython == 8.4.0
