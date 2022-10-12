@@ -26,9 +26,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 ######################
 
 #Partie 1
-st.title("Loan Default Prediction") 
-st.subheader("Are you sure your loan applicant is surely going to   pay the loan back?💸""This machine learning app will help you to make a prediction to help you with your decision!")
-
+st.title("Prêt à dépenser : loan default prediction")
+st.image("Sidebar.png") 
+st.subheader("Are you sure your loan applicant is surely going to pay the loan back? This machine learning app will help you to make a prediction to help you with your decision!")
 
 #Partie 2
 st.subheader("To predict default/ failure to pay back status, you need to follow the steps below:") 
@@ -48,26 +48,26 @@ st.sidebar.title("Loan Applicant Info")
 st.sidebar.write("Please choose parameters that descibe the applicant")
 
 def user_input_features():
-    CODE_GENDER = st.sidebar.text_input("CODE_GENDER")
-    EXT_SOURCE_1 = st.sidebar.text_input("EXT_SOURCE_1")
-    EXT_SOURCE_2 = st.sidebar.text_input("EXT_SOURCE_2")
-    EXT_SOURCE_3 = st.sidebar.text_input("EXT_SOURCE_3")
-    NAME_CONTRACT_TYPE_Cash_loans = st.sidebar.text_input("NAME_CONTRACT_TYPE_Cash_loans")
-    NAME_EDUCATION_TYPE_Higher_education = st.sidebar.text_input("NAME_EDUCATION_TYPE_Higher_education")
-    NAME_EDUCATION_TYPE_Secondary___secondary_special = st.sidebar.text_input("NAME_EDUCATION_TYPE_Secondary___secondary_special")
-    OCCUPATION_TYPE_Drivers = st.sidebar.text_input("OCCUPATION_TYPE_Drivers")
-    CC_AMT_BALANCE_MEAN = st.sidebar.text_input("CC_AMT_BALANCE_MEAN")
-    CC_AMT_DRAWINGS_ATM_CURRENT_SUM = st.sidebar.text_input("CC_AMT_DRAWINGS_ATM_CURRENT_SUM")
-    CC_AMT_DRAWINGS_CURRENT_MEAN = st.sidebar.text_input("CC_AMT_DRAWINGS_CURRENT_MEAN")
-    CC_AMT_RECEIVABLE_PRINCIPAL_MEAN = st.sidebar.text_input("CC_AMT_RECEIVABLE_PRINCIPAL_MEAN")
-    CC_AMT_RECIVABLE_MEAN = st.sidebar.text_input("CC_AMT_RECIVABLE_MEAN")
-    CC_CNT_DRAWINGS_ATM_CURRENT_MEAN = st.sidebar.text_input("CC_CNT_DRAWINGS_ATM_CURRENT_MEAN")
-    CC_CNT_DRAWINGS_ATM_CURRENT_VAR = st.sidebar.text_input("CC_CNT_DRAWINGS_ATM_CURRENT_VAR")
-    INSTAL_DPD_MEAN = st.sidebar.text_input("INSTAL_DPD_MEAN")
-    APPROVED_AMT_DOWN_PAYMENT_MAX = st.sidebar.text_input("APPROVED_AMT_DOWN_PAYMENT_MAX")
-    PREV_CODE_REJECT_REASON_XAP_MEAN = st.sidebar.text_input("PREV_CODE_REJECT_REASON_XAP_MEAN")
-    PREV_NAME_CONTRACT_STATUS_Refused_MEAN = st.sidebar.text_input("PREV_NAME_CONTRACT_STATUS_Refused_MEAN")
-    PREV_NAME_PRODUCT_TYPE_walk_in_MEAN = st.sidebar.text_input("PREV_NAME_PRODUCT_TYPE_walk_in_MEAN")
+    CODE_GENDER = st.sidebar.radio('CODE_GENDER', ('0', '1'), index = 1)
+    EXT_SOURCE_1 = st.sidebar.slider("EXT_SOURCE_1", min_value = 0.0, max_value = 1.0, step = 0.1, value = 0.5)
+    EXT_SOURCE_2 = st.sidebar.slider("EXT_SOURCE_2", min_value = 0.0, max_value = 1.0, step = 0.1, value = 0.5)
+    EXT_SOURCE_3 = st.sidebar.slider("EXT_SOURCE_3", min_value = 0.0, max_value = 1.0, step = 0.1, value = 0.5)
+    NAME_CONTRACT_TYPE_Cash_loans = st.sidebar.radio('NAME_CONTRACT_TYPE_Cash_loans', ('0', '1'), index = 1)
+    NAME_EDUCATION_TYPE_Higher_education = st.sidebar.radio('NAME_EDUCATION_TYPE_Higher_education', ('0', '1'), index = 0)
+    NAME_EDUCATION_TYPE_Secondary___secondary_special = st.sidebar.radio('NAME_EDUCATION_TYPE_Secondary___secondary_special', ('0', '1'), index = 1)
+    OCCUPATION_TYPE_Drivers = st.sidebar.radio('OCCUPATION_TYPE_Drivers', ('0', '1'), index = 0)
+    CC_AMT_BALANCE_MEAN = st.sidebar.number_input("CC_AMT_BALANCE_MEAN", min_value = 0, max_value = 400000, value = 0)
+    CC_AMT_DRAWINGS_ATM_CURRENT_SUM = st.sidebar.number_input("CC_AMT_DRAWINGS_ATM_CURRENT_SUM", min_value = 0, max_value = 1500000, value = 0)
+    CC_AMT_DRAWINGS_CURRENT_MEAN = st.sidebar.number_input("CC_AMT_DRAWINGS_CURRENT_MEAN", min_value = 0, max_value = 200000, value = 0)
+    CC_AMT_RECEIVABLE_PRINCIPAL_MEAN = st.sidebar.number_input("CC_AMT_RECEIVABLE_PRINCIPAL_MEAN", min_value = 0, max_value = 400000, value = 0)
+    CC_AMT_RECIVABLE_MEAN = st.sidebar.number_input("CC_AMT_RECIVABLE_MEAN", min_value = 0, max_value = 400000, value = 0)
+    CC_CNT_DRAWINGS_ATM_CURRENT_MEAN = st.sidebar.slider("CC_CNT_DRAWINGS_ATM_CURRENT_MEAN", min_value = 0.0, max_value = 5.0, step = 0.5, value = 0.0)
+    CC_CNT_DRAWINGS_ATM_CURRENT_VAR = st.sidebar.slider("CC_CNT_DRAWINGS_ATM_CURRENT_VAR", min_value = 0, max_value = 25, step = 1, value = 0)
+    INSTAL_DPD_MEAN = st.sidebar.slider("INSTAL_DPD_MEAN", min_value = 0, max_value = 100, step = 1, value = 0)
+    APPROVED_AMT_DOWN_PAYMENT_MAX = st.sidebar.number_input("APPROVED_AMT_DOWN_PAYMENT_MAX", min_value = 0, max_value = 300000, value = 0)
+    PREV_CODE_REJECT_REASON_XAP_MEAN = st.sidebar.slider("PREV_CODE_REJECT_REASON_XAP_MEAN", min_value = 0.0, max_value = 1.0, step = 0.1, value = 1.0)
+    PREV_NAME_CONTRACT_STATUS_Refused_MEAN = st.sidebar.slider("PREV_NAME_CONTRACT_STATUS_Refused_MEAN", min_value = 0.0, max_value = 1.0, step = 0.1, value = 0.0)
+    PREV_NAME_PRODUCT_TYPE_walk_in_MEAN = st.sidebar.slider("PREV_NAME_PRODUCT_TYPE_walk_in_MEAN", min_value = 0.0, max_value = 1.0, step = 0.1, value = 0.0)
     data = {'CODE_GENDER': CODE_GENDER,
             'EXT_SOURCE_1': EXT_SOURCE_1,
             'EXT_SOURCE_2': EXT_SOURCE_2,
@@ -101,21 +101,23 @@ btn_predict = st.sidebar.button("Predict")
 
 #Prediction
 if btn_predict: 
-    pred = pipeline.predict_proba(D_user_data)[:, 1]
+    pred = pipeline.predict_proba(D_user_data)[0,1]
     
-    if pred[0] > 0.2: 
-        st.error('The customer default probability is {}'.format(pred))           
+    if pred > 0.05: 
+        st.error('The customer default probability is {:.2%}'.format(pred))           
     else: 
-        st.success('The customer default probability is {}'.format(pred))
+        st.success('The customer default probability is {:.2%}'.format(pred))
         
 #SHAP graphique 1      
     st.subheader('Result Interpretability - Applicant Level')
     shap.initjs()
-    explainer = shap.Explainer(pipeline["classifier"])
+    explainer = shap.TreeExplainer(pipeline["classifier"])
     shap_values = explainer(D_user_data)
-    fig  = shap.plots._waterfall.waterfall_legacy(explainer.expected_value[0],shap_values[0].values[:,0], feature_names = D_user_data.columns, max_display = 20)
+    fig  = shap.plots.waterfall(shap_values[0], max_display = 20)
     st.pyplot(fig)
     
 #SHAP graphique 2
     st.subheader('Model Interpretability - Overall')
-    st.image("Graph2.png") 
+    st.image("Graph2.png")
+    
+    st.write(""" Interpretation """)
