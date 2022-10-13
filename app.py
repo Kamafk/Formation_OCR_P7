@@ -26,16 +26,18 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 ######################
 
 #Partie 1
-st.title("Prêt à dépenser : loan default prediction")
-st.image("Sidebar.png") 
-st.subheader("Are you sure your loan applicant is surely going to pay the loan back? This machine learning app will help you to make a prediction to help you with your decision!")
+st.markdown("<h1 style='text-align: center; color: black;'> Prêt à dépenser : loan default prediction </h1>", unsafe_allow_html = True)
+
+col1, col2, col3 = st.columns([1,1,1])
+with col2:
+    st.image("Logo.png")
 
 #Partie 2
 st.subheader("To predict default/ failure to pay back status, you need to follow the steps below:") 
 st.markdown(""" 
-1. Enter/choose the parameters that best descibe your applicant on the left side bar; 
-2. Press the "Predict" button and wait for the result. 
-""")
+            1. Enter/choose the parameters that best descibe your applicant on the left side bar; 
+            2. Press the "Predict" button and wait for the result. 
+            """)
 
 #Partie 3
 st.subheader("Below you could find prediction result: ")
@@ -108,7 +110,16 @@ if btn_predict:
     else: 
         st.success('The customer default probability is {:.2%}'.format(pred))
         
-#SHAP graphique 1      
+#Model default probability
+    st.subheader('Probability distribution of client defects')
+    st.image("Default_probability.png")
+    st.write(""" If the probability is higher than 10%, please refuse the loan """)
+    
+#Model predictive quality
+    st.subheader("Evaluation of the model's predictive quality")
+    st.image("ROC_curve.png")
+
+#SHAP graph 1 : Result Interpretability - Applicant Level     
     st.subheader('Result Interpretability - Applicant Level')
     shap.initjs()
     explainer = shap.TreeExplainer(pipeline["classifier"])
@@ -116,8 +127,14 @@ if btn_predict:
     fig  = shap.plots.waterfall(shap_values[0], max_display = 20)
     st.pyplot(fig)
     
-#SHAP graphique 2
+#SHAP graph 2 : Model Interpretability - Overall
     st.subheader('Model Interpretability - Overall')
-    st.image("Graph2.png")
+    st.image("SHAP_summary.png")
     
-    st.write(""" Interpretation """)
+    st.subheader('Interpretation:')      
+    st.write(""" In this chart blue and red mean the feature value, blue is a smaller value and red is a higher value.
+              \n The width of the bars represents the number of observations on a certain feature value, for example with the INSTALL_DPD_Mean feature we can see that most of the applicants are within the blue area.
+              \n On axis x negative SHAP values represent applicants likely to pay the loan back and the positive values on the right side represent applicants that are that are likely to churn.
+              \n What we are learning from this chart is that features such as EXT_Source_2 and EXT_Source_3 are the most impactful features driving the outcome prediction.
+              \n The higher NAME_EDUCATION_TYPE_Higher_education is, the more likely the applicant to pay the loan back and vice versa.
+             """)
