@@ -105,7 +105,7 @@ btn_predict = st.sidebar.button("Predict")
 if btn_predict: 
     pred = pipeline.predict_proba(D_user_data)[0,1]
     
-    if pred > 0.05: 
+    if pred > 0.5: 
         st.error('The customer default probability is {:.2%}'.format(pred))           
     else: 
         st.success('The customer default probability is {:.2%}'.format(pred))
@@ -113,7 +113,7 @@ if btn_predict:
 #Model default probability
     st.subheader('Probability distribution of client defects')
     st.image("Default_probability.png")
-    st.write(""" If the probability is higher than 10%, please refuse the loan """)
+    st.write(""" If the probability is higher than 50%, please refuse the loan """)
     
 #Model predictive quality
     st.subheader("Evaluation of the model's predictive quality")
@@ -134,7 +134,6 @@ if btn_predict:
     st.subheader('Interpretation:')      
     st.write(""" In this chart blue and red mean the feature value, blue is a smaller value and red is a higher value.
               \n The width of the bars represents the number of observations on a certain feature value, for example with the INSTALL_DPD_Mean feature we can see that most of the applicants are within the blue area.
-              \n On axis x negative SHAP values represent applicants likely to pay the loan back and the positive values on the right side represent applicants that are that are likely to churn.
-              \n What we are learning from this chart is that features such as EXT_Source_2 and EXT_Source_3 are the most impactful features driving the outcome prediction.
-              \n The higher NAME_EDUCATION_TYPE_Higher_education is, the more likely the applicant to pay the loan back and vice versa.
+              \n On axis x negative SHAP values on the left side represent applicants likely to pay the loan back and the positive values on the right side represent applicants that are likely to churn.
+              \n What we are learning from this chart is that features such as EXT_Source_3 and EXT_Source_2 are the most impactful features driving the outcome prediction. The higher the EXT_Source is, the more likely the applicant to pay the loan back and vice versa.
              """)
