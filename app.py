@@ -105,18 +105,19 @@ btn_predict = st.sidebar.button("Predict")
 if btn_predict: 
     pred = pipeline.predict_proba(D_user_data)[0,1]
     
-    if pred > 0.5: 
-        st.error('The customer default probability is {:.2%}'.format(pred))           
+    if pred > 0.44: 
+        st.error('Refuse the loan, the customer default probability is {:.2%}'.format(pred))           
     else: 
-        st.success('The customer default probability is {:.2%}'.format(pred))
+        st.success('Accept the loan, the customer default probability is {:.2%}'.format(pred))
         
 #Model default probability
     st.subheader('Probability distribution of client defects')
     st.image("Default_probability.png")
-    st.write(""" If the probability is higher than 50%, please refuse the loan """)
+    st.write(""" If the probability is higher than 44%, please refuse the loan """)
     
 #Model predictive quality
     st.subheader("Evaluation of the model's predictive quality")
+    st.image("PR_curve.png")
     st.image("ROC_curve.png")
 
 #SHAP graph 1 : Result Interpretability - Applicant Level     
